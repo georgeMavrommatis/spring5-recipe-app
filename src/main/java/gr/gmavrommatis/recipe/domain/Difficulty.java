@@ -7,7 +7,6 @@ import javax.persistence.Entity;
  *
  * @author G.MAVROMMATIS
  */
-@Entity
 public enum Difficulty {
     EASY, MODERATE, HARD
 }
