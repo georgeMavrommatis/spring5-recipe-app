@@ -1,6 +1,7 @@
 package gr.gmavrommatis.recipe.controllers;
 
 import gr.gmavrommatis.recipe.services.RecipeServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  * @author G.MAVROMMATIS
  */
+@Slf4j
 @Controller
 public class IndexController {
 
@@ -21,6 +23,8 @@ public class IndexController {
 
     @RequestMapping({"","/","/index"})
     public String getIndexPage(Model model){
+
+        log.debug("Getting Index Page");
 
         model.addAttribute("recipes", recipeService.getRecipes());
 
