@@ -2,6 +2,7 @@ package gr.gmavrommatis.recipe.controllers;
 
 import gr.gmavrommatis.recipe.commands.RecipeCommand;
 import gr.gmavrommatis.recipe.services.RecipeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
  *
  * @author G.MAVROMMATIS
  */
+@Slf4j
 @Controller
 public class RecipeController {
 
@@ -45,5 +47,15 @@ public class RecipeController {
     public String updateRecipe(@PathVariable String id, Model model){
         model.addAttribute("recipe", recipeService.findCommandById(Long.valueOf(id)));
         return  "recipe/recipeform";
+    }
+
+    @GetMapping
+    @RequestMapping("recipe/{id}/delete")
+    public String deleteById(@PathVariable String id){
+
+        log.debug("Deleting id: " + id);
+
+        recipeService.deleteById(Long.valueOf(id));
+        return "redirect:/";
     }
 }
