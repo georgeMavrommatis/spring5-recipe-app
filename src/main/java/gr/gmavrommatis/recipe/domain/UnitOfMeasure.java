@@ -12,7 +12,8 @@ import javax.persistence.Id;
  *
  * @author G.MAVROMMATIS
  */
-@Data
+@Getter
+@Setter
 @Entity
 public class UnitOfMeasure {
 

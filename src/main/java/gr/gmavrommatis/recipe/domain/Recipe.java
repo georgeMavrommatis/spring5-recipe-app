@@ -1,6 +1,8 @@
 package gr.gmavrommatis.recipe.domain;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
@@ -11,7 +13,8 @@ import java.util.Set;
  * Created by jt on 16/Aug/2021.
  */
 @Entity
-@Data
+@Getter
+@Setter
 public class Recipe {
 
     @Id

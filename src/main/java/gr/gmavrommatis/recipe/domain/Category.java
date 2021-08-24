@@ -10,7 +10,8 @@ import java.util.Set;
  *
  * @author G.MAVROMMATIS
  */
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(exclude = {"recipes"})
 @Entity
 public class Category {
