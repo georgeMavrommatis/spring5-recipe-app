@@ -4,6 +4,7 @@ import gr.gmavrommatis.recipe.commands.RecipeCommand;
 import gr.gmavrommatis.recipe.converters.RecipeCommandToRecipe;
 import gr.gmavrommatis.recipe.converters.RecipeToRecipeCommand;
 import gr.gmavrommatis.recipe.domain.Recipe;
+import gr.gmavrommatis.recipe.exceptions.NotFoundException;
 import gr.gmavrommatis.recipe.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -47,7 +48,8 @@ public class RecipeServiceImpl implements RecipeService {
         Optional<Recipe> recipeOptional = recipeRepository.findById(l);
 
         if (!recipeOptional.isPresent()) {
-            throw new RuntimeException("Recipe Not Found!");
+            //throw new RuntimeException("Recipe Not Found!");
+            throw new NotFoundException("Recipe Not Found");
         }
 
         return recipeOptional.get();

@@ -4,6 +4,7 @@ import gr.gmavrommatis.recipe.commands.RecipeCommand;
 import gr.gmavrommatis.recipe.converters.RecipeCommandToRecipe;
 import gr.gmavrommatis.recipe.converters.RecipeToRecipeCommand;
 import gr.gmavrommatis.recipe.domain.Recipe;
+import gr.gmavrommatis.recipe.exceptions.NotFoundException;
 import gr.gmavrommatis.recipe.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
@@ -55,6 +56,18 @@ public class RecipeServiceImplTest {
         assertNotNull("Null recipe returned", recipeReturned);
         verify(recipeRepository, times(1)).findById(anyLong());
         verify(recipeRepository, never()).findAll();
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void getRecipeByIdTestNotFound() throws Exception {
+
+        Optional<Recipe> recipeOptional = Optional.empty();
+
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        Recipe recipeReturned = recipeService.findById(1L);
+
+        //should go boom
     }
 
     @Test
